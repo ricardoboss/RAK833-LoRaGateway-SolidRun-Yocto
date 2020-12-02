@@ -7,16 +7,16 @@ DEPENDS = "libftdi libmpsse libusb1"
 PR = "r2"
 
 SRC_URI = "git://github.com/Lora-net/lora_gateway.git;protocol=git \
-           file://library.cfg \
-	   file://loragw_spi.ftdi.c \
- 	   file://Makefile-gw-lib \
-	   file://Makefile-gw \
-	   file://Makefile-lbt-test \
-	   file://Makefile-pkt-logger \
-	   file://Makefile-spectral-scan \
-	   file://Makefile-spi-stress \
-           file://Makefile-tx-continuous \
-	   file://Makefile-tx-test \
+        file://library.cfg \
+        file://loragw_spi.ftdi.c \
+        file://Makefile-gw-lib \
+        file://Makefile-gw \
+        file://Makefile-lbt-test \
+        file://Makefile-pkt-logger \
+        file://Makefile-spectral-scan \
+        file://Makefile-spi-stress \
+        file://Makefile-tx-continuous \
+        file://Makefile-tx-test \
 "
 
 SRCREV = "a955619271b5d0a46d32e08150acfbc1eed183b7"
@@ -36,7 +36,6 @@ do_configure_append() {
     cp ${WORKDIR}/Makefile-spi-stress ./util_spi_stress/Makefile
     cp ${WORKDIR}/Makefile-tx-continuous ./util_tx_continuous/Makefile
     cp ${WORKDIR}/Makefile-tx-test ./util_tx_test/Makefile
-
 }
 
 do_compile() {
@@ -68,29 +67,7 @@ FILES_${PN}-utils = "/opt/lora-gateway/gateway-utils/*"
 FILES_${PN}-utils-dbg = "/opt/lora-gateway/gateway-utils/.debug"
 FILES_${PN}-dev = "${includedir}/lora"
 
+INSANE_SKIP_${PN} = "ldflags"
+INSANE_SKIP_${PN}-dev = "ldflags"
 
 ALLOW_EMPTY_${PN} = "1"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

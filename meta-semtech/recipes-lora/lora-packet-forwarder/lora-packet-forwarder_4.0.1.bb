@@ -8,8 +8,8 @@ PR = "r5"
 
 SRCREV = "v${PV}"
 SRC_URI = "git://github.com/Lora-net/packet_forwarder.git;protocol=git \
-           file://Makefile-pk \
-	   file://Makefile \
+        file://Makefile-pk \
+        file://Makefile \
 "
 
 S = "${WORKDIR}/git"
@@ -43,3 +43,6 @@ do_install() {
 
 FILES_${PN} += "${LORA_DIR}"
 FILES_${PN}-dbg += "${LORA_DIR}/.debug ${LORA_DIR}/utils/.debug"
+
+INSANE_SKIP_${PN} = "ldflags"
+INSANE_SKIP_${PN}-dev = "ldflags"
