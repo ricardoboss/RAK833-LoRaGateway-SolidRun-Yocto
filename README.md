@@ -5,7 +5,7 @@ verified on HummingBoard2 rev 1.4 and MicroSOM rev 1.5
 ubuntu16.Other versions of the operating system may have unpredictable errors.
 
 ##	prepare yocto image
- 
+
 step1 : Download
 
   refer to guide (https://wiki.solid-run.com/doku.php?id=products:imx6:software:os:yocto)
