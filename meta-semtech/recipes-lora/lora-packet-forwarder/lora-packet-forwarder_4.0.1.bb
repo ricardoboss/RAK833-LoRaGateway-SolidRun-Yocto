@@ -19,6 +19,10 @@ export LGW_PATH = "${STAGING_LIBDIR}/lora"
 export LGW_INC = "${STAGING_INCDIR}/lora"
 CFLAGS += "-I${STAGING_INCDIR}/lora -Iinc -I."
 
+# needed for fixing "File /opt/lora-packet-forwarder/utils/util_sink in package lora-packet-forwarder doesn't have GNU_HASH (didn't pass LDFLAGS?)"
+# found here: https://www.lynxbee.com/how-to-fix-error-do_package_qa-qa-issue-no-gnu_hash-in-the-elf-binary/
+TARGET_CC_ARCH += "${LDFLAGS}"
+
 do_configure_append() {
     cp ${WORKDIR}/Makefile-pk ${S}/lora_pkt_fwd/Makefile;
     cp ${WORKDIR}/Makefile ${S}/Makefile;
@@ -43,6 +47,3 @@ do_install() {
 
 FILES_${PN} += "${LORA_DIR}"
 FILES_${PN}-dbg += "${LORA_DIR}/.debug ${LORA_DIR}/utils/.debug"
-
-INSANE_SKIP_${PN} = "ldflags"
-INSANE_SKIP_${PN}-dev = "ldflags"

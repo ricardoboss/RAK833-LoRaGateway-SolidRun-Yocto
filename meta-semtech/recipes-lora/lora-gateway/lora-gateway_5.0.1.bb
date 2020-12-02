@@ -24,6 +24,10 @@ SRCREV = "a955619271b5d0a46d32e08150acfbc1eed183b7"
 S = "${WORKDIR}/git"
 CFLAGS += "-Iinc -I. -DLIBFTDI1=1"
 
+# needed for fixing "File /opt/lora-gateway/gateway-utils/test_loragw_cal in package lora-gateway-utils doesn't have GNU_HASH (didn't pass LDFLAGS?)"
+# found here: https://www.lynxbee.com/how-to-fix-error-do_package_qa-qa-issue-no-gnu_hash-in-the-elf-binary/
+TARGET_CC_ARCH += "${LDFLAGS}"
+
 do_configure_append() {
     cp ${WORKDIR}/loragw_spi.ftdi.c ${S}/libloragw/src/loragw_spi.ftdi.c;
     cp ${WORKDIR}/Makefile-gw-lib ${S}/libloragw/Makefile;
@@ -66,8 +70,5 @@ FILES_${PN}-staticdev = "${libdir}/lora"
 FILES_${PN}-utils = "/opt/lora-gateway/gateway-utils/*"
 FILES_${PN}-utils-dbg = "/opt/lora-gateway/gateway-utils/.debug"
 FILES_${PN}-dev = "${includedir}/lora"
-
-INSANE_SKIP_${PN} = "ldflags"
-INSANE_SKIP_${PN}-dev = "ldflags"
 
 ALLOW_EMPTY_${PN} = "1"
